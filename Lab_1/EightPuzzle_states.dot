@@ -1,0 +1,158 @@
+digraph EightPuzzle {
+    rankdir=TB;
+    graph [fontname="Arial", fontsize=14, label=<<B>Eight Puzzle – Pilna būsenų erdvės schema (BFS, gylis ≤ 5)</B><BR/>Kintamieji: state = (t<SUB>0</SUB>…t<SUB>8</SUB>), t<SUB>i</SUB> ∈ {{0…8}}, 0 = tuščias<BR/>Veiksmai: UP, DOWN, LEFT, RIGHT<BR/>Pradinė: (2, 4, 3, 1, 5, 6, 7, 8, 0)  |  Galutinė: (1, 2, 3, 4, 5, 6, 7, 8, 0)<BR/>Būsenų: 51 | Briaunų: 80>, labelloc=t, nodesep=0.3, ranksep=0.8];
+    node [fontname="Courier", fontsize=9, style=filled];
+    edge [fontname="Arial", fontsize=8];
+
+    { rank=same; N0 }
+    { rank=same; N1 N2 }
+    { rank=same; N3 N4 N5 N6 }
+    { rank=same; N7 N8 N9 N10 N11 N12 N13 N14 }
+    { rank=same; N15 N16 N17 N18 N19 N20 N21 N22 N23 N24 N25 N26 N27 N28 N29 N30 }
+    { rank=same; N31 N32 N33 N34 N35 N36 N37 N38 N39 N40 N41 N42 N43 N44 N45 N46 N47 N48 N49 N50 }
+
+    N0 [fillcolor="#FFFACD" penwidth=3 color="#DAA520" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N0</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>1</B></TD><TD><B>5</B></TD><TD><B>6</B></TD></TR><TR><TD><B>7</B></TD><TD><B>8</B></TD><TD> </TD></TR></TABLE>>];
+    N1 [fillcolor="#ADD8E6" penwidth=2 color="#4682B4" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N1</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>1</B></TD><TD><B>5</B></TD><TD> </TD></TR><TR><TD><B>7</B></TD><TD><B>8</B></TD><TD><B>6</B></TD></TR></TABLE>>];
+    N2 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N2</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>1</B></TD><TD><B>5</B></TD><TD><B>6</B></TD></TR><TR><TD><B>7</B></TD><TD> </TD><TD><B>8</B></TD></TR></TABLE>>];
+    N3 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N3</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD> </TD></TR><TR><TD><B>1</B></TD><TD><B>5</B></TD><TD><B>3</B></TD></TR><TR><TD><B>7</B></TD><TD><B>8</B></TD><TD><B>6</B></TD></TR></TABLE>>];
+    N4 [fillcolor="#ADD8E6" penwidth=2 color="#4682B4" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N4</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>1</B></TD><TD> </TD><TD><B>5</B></TD></TR><TR><TD><B>7</B></TD><TD><B>8</B></TD><TD><B>6</B></TD></TR></TABLE>>];
+    N5 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N5</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>1</B></TD><TD> </TD><TD><B>6</B></TD></TR><TR><TD><B>7</B></TD><TD><B>5</B></TD><TD><B>8</B></TD></TR></TABLE>>];
+    N6 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N6</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>1</B></TD><TD><B>5</B></TD><TD><B>6</B></TD></TR><TR><TD> </TD><TD><B>7</B></TD><TD><B>8</B></TD></TR></TABLE>>];
+    N7 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N7</B></TD></TR><TR><TD><B>2</B></TD><TD> </TD><TD><B>4</B></TD></TR><TR><TD><B>1</B></TD><TD><B>5</B></TD><TD><B>3</B></TD></TR><TR><TD><B>7</B></TD><TD><B>8</B></TD><TD><B>6</B></TD></TR></TABLE>>];
+    N8 [fillcolor="#ADD8E6" penwidth=2 color="#4682B4" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N8</B></TD></TR><TR><TD><B>2</B></TD><TD> </TD><TD><B>3</B></TD></TR><TR><TD><B>1</B></TD><TD><B>4</B></TD><TD><B>5</B></TD></TR><TR><TD><B>7</B></TD><TD><B>8</B></TD><TD><B>6</B></TD></TR></TABLE>>];
+    N9 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N9</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>1</B></TD><TD><B>8</B></TD><TD><B>5</B></TD></TR><TR><TD><B>7</B></TD><TD> </TD><TD><B>6</B></TD></TR></TABLE>>];
+    N10 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N10</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD> </TD><TD><B>1</B></TD><TD><B>5</B></TD></TR><TR><TD><B>7</B></TD><TD><B>8</B></TD><TD><B>6</B></TD></TR></TABLE>>];
+    N11 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N11</B></TD></TR><TR><TD><B>2</B></TD><TD> </TD><TD><B>3</B></TD></TR><TR><TD><B>1</B></TD><TD><B>4</B></TD><TD><B>6</B></TD></TR><TR><TD><B>7</B></TD><TD><B>5</B></TD><TD><B>8</B></TD></TR></TABLE>>];
+    N12 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N12</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD> </TD><TD><B>1</B></TD><TD><B>6</B></TD></TR><TR><TD><B>7</B></TD><TD><B>5</B></TD><TD><B>8</B></TD></TR></TABLE>>];
+    N13 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N13</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>1</B></TD><TD><B>6</B></TD><TD> </TD></TR><TR><TD><B>7</B></TD><TD><B>5</B></TD><TD><B>8</B></TD></TR></TABLE>>];
+    N14 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N14</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD> </TD><TD><B>5</B></TD><TD><B>6</B></TD></TR><TR><TD><B>1</B></TD><TD><B>7</B></TD><TD><B>8</B></TD></TR></TABLE>>];
+    N15 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N15</B></TD></TR><TR><TD><B>2</B></TD><TD><B>5</B></TD><TD><B>4</B></TD></TR><TR><TD><B>1</B></TD><TD> </TD><TD><B>3</B></TD></TR><TR><TD><B>7</B></TD><TD><B>8</B></TD><TD><B>6</B></TD></TR></TABLE>>];
+    N16 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N16</B></TD></TR><TR><TD> </TD><TD><B>2</B></TD><TD><B>4</B></TD></TR><TR><TD><B>1</B></TD><TD><B>5</B></TD><TD><B>3</B></TD></TR><TR><TD><B>7</B></TD><TD><B>8</B></TD><TD><B>6</B></TD></TR></TABLE>>];
+    N17 [fillcolor="#ADD8E6" penwidth=2 color="#4682B4" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N17</B></TD></TR><TR><TD> </TD><TD><B>2</B></TD><TD><B>3</B></TD></TR><TR><TD><B>1</B></TD><TD><B>4</B></TD><TD><B>5</B></TD></TR><TR><TD><B>7</B></TD><TD><B>8</B></TD><TD><B>6</B></TD></TR></TABLE>>];
+    N18 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N18</B></TD></TR><TR><TD><B>2</B></TD><TD><B>3</B></TD><TD> </TD></TR><TR><TD><B>1</B></TD><TD><B>4</B></TD><TD><B>5</B></TD></TR><TR><TD><B>7</B></TD><TD><B>8</B></TD><TD><B>6</B></TD></TR></TABLE>>];
+    N19 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N19</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>1</B></TD><TD><B>8</B></TD><TD><B>5</B></TD></TR><TR><TD> </TD><TD><B>7</B></TD><TD><B>6</B></TD></TR></TABLE>>];
+    N20 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N20</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>1</B></TD><TD><B>8</B></TD><TD><B>5</B></TD></TR><TR><TD><B>7</B></TD><TD><B>6</B></TD><TD> </TD></TR></TABLE>>];
+    N21 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N21</B></TD></TR><TR><TD> </TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>2</B></TD><TD><B>1</B></TD><TD><B>5</B></TD></TR><TR><TD><B>7</B></TD><TD><B>8</B></TD><TD><B>6</B></TD></TR></TABLE>>];
+    N22 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N22</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>7</B></TD><TD><B>1</B></TD><TD><B>5</B></TD></TR><TR><TD> </TD><TD><B>8</B></TD><TD><B>6</B></TD></TR></TABLE>>];
+    N23 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N23</B></TD></TR><TR><TD> </TD><TD><B>2</B></TD><TD><B>3</B></TD></TR><TR><TD><B>1</B></TD><TD><B>4</B></TD><TD><B>6</B></TD></TR><TR><TD><B>7</B></TD><TD><B>5</B></TD><TD><B>8</B></TD></TR></TABLE>>];
+    N24 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N24</B></TD></TR><TR><TD><B>2</B></TD><TD><B>3</B></TD><TD> </TD></TR><TR><TD><B>1</B></TD><TD><B>4</B></TD><TD><B>6</B></TD></TR><TR><TD><B>7</B></TD><TD><B>5</B></TD><TD><B>8</B></TD></TR></TABLE>>];
+    N25 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N25</B></TD></TR><TR><TD> </TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>2</B></TD><TD><B>1</B></TD><TD><B>6</B></TD></TR><TR><TD><B>7</B></TD><TD><B>5</B></TD><TD><B>8</B></TD></TR></TABLE>>];
+    N26 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N26</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>7</B></TD><TD><B>1</B></TD><TD><B>6</B></TD></TR><TR><TD> </TD><TD><B>5</B></TD><TD><B>8</B></TD></TR></TABLE>>];
+    N27 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N27</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD> </TD></TR><TR><TD><B>1</B></TD><TD><B>6</B></TD><TD><B>3</B></TD></TR><TR><TD><B>7</B></TD><TD><B>5</B></TD><TD><B>8</B></TD></TR></TABLE>>];
+    N28 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N28</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>1</B></TD><TD><B>6</B></TD><TD><B>8</B></TD></TR><TR><TD><B>7</B></TD><TD><B>5</B></TD><TD> </TD></TR></TABLE>>];
+    N29 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N29</B></TD></TR><TR><TD> </TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>2</B></TD><TD><B>5</B></TD><TD><B>6</B></TD></TR><TR><TD><B>1</B></TD><TD><B>7</B></TD><TD><B>8</B></TD></TR></TABLE>>];
+    N30 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N30</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>5</B></TD><TD> </TD><TD><B>6</B></TD></TR><TR><TD><B>1</B></TD><TD><B>7</B></TD><TD><B>8</B></TD></TR></TABLE>>];
+    N31 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N31</B></TD></TR><TR><TD><B>2</B></TD><TD><B>5</B></TD><TD><B>4</B></TD></TR><TR><TD><B>1</B></TD><TD><B>8</B></TD><TD><B>3</B></TD></TR><TR><TD><B>7</B></TD><TD> </TD><TD><B>6</B></TD></TR></TABLE>>];
+    N32 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N32</B></TD></TR><TR><TD><B>2</B></TD><TD><B>5</B></TD><TD><B>4</B></TD></TR><TR><TD> </TD><TD><B>1</B></TD><TD><B>3</B></TD></TR><TR><TD><B>7</B></TD><TD><B>8</B></TD><TD><B>6</B></TD></TR></TABLE>>];
+    N33 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N33</B></TD></TR><TR><TD><B>2</B></TD><TD><B>5</B></TD><TD><B>4</B></TD></TR><TR><TD><B>1</B></TD><TD><B>3</B></TD><TD> </TD></TR><TR><TD><B>7</B></TD><TD><B>8</B></TD><TD><B>6</B></TD></TR></TABLE>>];
+    N34 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N34</B></TD></TR><TR><TD><B>1</B></TD><TD><B>2</B></TD><TD><B>4</B></TD></TR><TR><TD> </TD><TD><B>5</B></TD><TD><B>3</B></TD></TR><TR><TD><B>7</B></TD><TD><B>8</B></TD><TD><B>6</B></TD></TR></TABLE>>];
+    N35 [fillcolor="#ADD8E6" penwidth=2 color="#4682B4" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N35</B></TD></TR><TR><TD><B>1</B></TD><TD><B>2</B></TD><TD><B>3</B></TD></TR><TR><TD> </TD><TD><B>4</B></TD><TD><B>5</B></TD></TR><TR><TD><B>7</B></TD><TD><B>8</B></TD><TD><B>6</B></TD></TR></TABLE>>];
+    N36 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N36</B></TD></TR><TR><TD><B>2</B></TD><TD><B>3</B></TD><TD><B>5</B></TD></TR><TR><TD><B>1</B></TD><TD><B>4</B></TD><TD> </TD></TR><TR><TD><B>7</B></TD><TD><B>8</B></TD><TD><B>6</B></TD></TR></TABLE>>];
+    N37 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N37</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD> </TD><TD><B>8</B></TD><TD><B>5</B></TD></TR><TR><TD><B>1</B></TD><TD><B>7</B></TD><TD><B>6</B></TD></TR></TABLE>>];
+    N38 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N38</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>1</B></TD><TD><B>8</B></TD><TD> </TD></TR><TR><TD><B>7</B></TD><TD><B>6</B></TD><TD><B>5</B></TD></TR></TABLE>>];
+    N39 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N39</B></TD></TR><TR><TD><B>4</B></TD><TD> </TD><TD><B>3</B></TD></TR><TR><TD><B>2</B></TD><TD><B>1</B></TD><TD><B>5</B></TD></TR><TR><TD><B>7</B></TD><TD><B>8</B></TD><TD><B>6</B></TD></TR></TABLE>>];
+    N40 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N40</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>7</B></TD><TD><B>1</B></TD><TD><B>5</B></TD></TR><TR><TD><B>8</B></TD><TD> </TD><TD><B>6</B></TD></TR></TABLE>>];
+    N41 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N41</B></TD></TR><TR><TD><B>1</B></TD><TD><B>2</B></TD><TD><B>3</B></TD></TR><TR><TD> </TD><TD><B>4</B></TD><TD><B>6</B></TD></TR><TR><TD><B>7</B></TD><TD><B>5</B></TD><TD><B>8</B></TD></TR></TABLE>>];
+    N42 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N42</B></TD></TR><TR><TD><B>2</B></TD><TD><B>3</B></TD><TD><B>6</B></TD></TR><TR><TD><B>1</B></TD><TD><B>4</B></TD><TD> </TD></TR><TR><TD><B>7</B></TD><TD><B>5</B></TD><TD><B>8</B></TD></TR></TABLE>>];
+    N43 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N43</B></TD></TR><TR><TD><B>4</B></TD><TD> </TD><TD><B>3</B></TD></TR><TR><TD><B>2</B></TD><TD><B>1</B></TD><TD><B>6</B></TD></TR><TR><TD><B>7</B></TD><TD><B>5</B></TD><TD><B>8</B></TD></TR></TABLE>>];
+    N44 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N44</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>7</B></TD><TD><B>1</B></TD><TD><B>6</B></TD></TR><TR><TD><B>5</B></TD><TD> </TD><TD><B>8</B></TD></TR></TABLE>>];
+    N45 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N45</B></TD></TR><TR><TD><B>2</B></TD><TD> </TD><TD><B>4</B></TD></TR><TR><TD><B>1</B></TD><TD><B>6</B></TD><TD><B>3</B></TD></TR><TR><TD><B>7</B></TD><TD><B>5</B></TD><TD><B>8</B></TD></TR></TABLE>>];
+    N46 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N46</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>1</B></TD><TD><B>6</B></TD><TD><B>8</B></TD></TR><TR><TD><B>7</B></TD><TD> </TD><TD><B>5</B></TD></TR></TABLE>>];
+    N47 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N47</B></TD></TR><TR><TD><B>4</B></TD><TD> </TD><TD><B>3</B></TD></TR><TR><TD><B>2</B></TD><TD><B>5</B></TD><TD><B>6</B></TD></TR><TR><TD><B>1</B></TD><TD><B>7</B></TD><TD><B>8</B></TD></TR></TABLE>>];
+    N48 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N48</B></TD></TR><TR><TD><B>2</B></TD><TD> </TD><TD><B>3</B></TD></TR><TR><TD><B>5</B></TD><TD><B>4</B></TD><TD><B>6</B></TD></TR><TR><TD><B>1</B></TD><TD><B>7</B></TD><TD><B>8</B></TD></TR></TABLE>>];
+    N49 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N49</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>5</B></TD><TD><B>7</B></TD><TD><B>6</B></TD></TR><TR><TD><B>1</B></TD><TD> </TD><TD><B>8</B></TD></TR></TABLE>>];
+    N50 [fillcolor="#FFE4E1" penwidth=1 color="#CD5C5C" label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3"><B>N50</B></TD></TR><TR><TD><B>2</B></TD><TD><B>4</B></TD><TD><B>3</B></TD></TR><TR><TD><B>5</B></TD><TD><B>6</B></TD><TD> </TD></TR><TR><TD><B>1</B></TD><TD><B>7</B></TD><TD><B>8</B></TD></TR></TABLE>>];
+
+    N0 -> N1 [label="  UP  " color="#006400" penwidth=2.5 fontcolor="#006400"];
+    N0 -> N2 [label="  LEFT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N1 -> N3 [label="  UP  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N1 -> N0 [label="  DOWN  " color="#4682B4" penwidth=1.2 fontcolor="#4682B4" style=dashed];
+    N1 -> N4 [label="  LEFT  " color="#006400" penwidth=2.5 fontcolor="#006400"];
+    N2 -> N5 [label="  UP  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N2 -> N6 [label="  LEFT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N2 -> N0 [label="  RIGHT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N3 -> N1 [label="  DOWN  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N3 -> N7 [label="  LEFT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N4 -> N8 [label="  UP  " color="#006400" penwidth=2.5 fontcolor="#006400"];
+    N4 -> N9 [label="  DOWN  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N4 -> N10 [label="  LEFT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N4 -> N1 [label="  RIGHT  " color="#4682B4" penwidth=1.2 fontcolor="#4682B4" style=dashed];
+    N5 -> N11 [label="  UP  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N5 -> N2 [label="  DOWN  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N5 -> N12 [label="  LEFT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N5 -> N13 [label="  RIGHT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N6 -> N14 [label="  UP  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N6 -> N2 [label="  RIGHT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N7 -> N15 [label="  DOWN  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N7 -> N16 [label="  LEFT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N7 -> N3 [label="  RIGHT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N8 -> N4 [label="  DOWN  " color="#4682B4" penwidth=1.2 fontcolor="#4682B4" style=dashed];
+    N8 -> N17 [label="  LEFT  " color="#006400" penwidth=2.5 fontcolor="#006400"];
+    N8 -> N18 [label="  RIGHT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N9 -> N4 [label="  UP  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N9 -> N19 [label="  LEFT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N9 -> N20 [label="  RIGHT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N10 -> N21 [label="  UP  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N10 -> N22 [label="  DOWN  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N10 -> N4 [label="  RIGHT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N11 -> N5 [label="  DOWN  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N11 -> N23 [label="  LEFT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N11 -> N24 [label="  RIGHT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N12 -> N25 [label="  UP  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N12 -> N26 [label="  DOWN  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N12 -> N5 [label="  RIGHT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N13 -> N27 [label="  UP  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N13 -> N28 [label="  DOWN  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N13 -> N5 [label="  LEFT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N14 -> N29 [label="  UP  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N14 -> N6 [label="  DOWN  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N14 -> N30 [label="  RIGHT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N15 -> N7 [label="  UP  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N15 -> N31 [label="  DOWN  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N15 -> N32 [label="  LEFT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N15 -> N33 [label="  RIGHT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N16 -> N34 [label="  DOWN  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N16 -> N7 [label="  RIGHT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N17 -> N35 [label="  DOWN  " color="#006400" penwidth=2.5 fontcolor="#006400"];
+    N17 -> N8 [label="  RIGHT  " color="#4682B4" penwidth=1.2 fontcolor="#4682B4" style=dashed];
+    N18 -> N36 [label="  DOWN  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N18 -> N8 [label="  LEFT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N19 -> N37 [label="  UP  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N19 -> N9 [label="  RIGHT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N20 -> N38 [label="  UP  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N20 -> N9 [label="  LEFT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N21 -> N10 [label="  DOWN  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N21 -> N39 [label="  RIGHT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N22 -> N10 [label="  UP  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N22 -> N40 [label="  RIGHT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N23 -> N41 [label="  DOWN  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N23 -> N11 [label="  RIGHT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N24 -> N42 [label="  DOWN  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N24 -> N11 [label="  LEFT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N25 -> N12 [label="  DOWN  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N25 -> N43 [label="  RIGHT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N26 -> N12 [label="  UP  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N26 -> N44 [label="  RIGHT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N27 -> N13 [label="  DOWN  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N27 -> N45 [label="  LEFT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N28 -> N13 [label="  UP  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N28 -> N46 [label="  LEFT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N29 -> N14 [label="  DOWN  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N29 -> N47 [label="  RIGHT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N30 -> N48 [label="  UP  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N30 -> N49 [label="  DOWN  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N30 -> N14 [label="  LEFT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+    N30 -> N50 [label="  RIGHT  " color="#999999" penwidth=0.8 fontcolor="#777777" style=dashed];
+
+    subgraph cluster_legend {
+        label="Legenda"; fontname="Arial"; fontsize=11;
+        style=rounded; color=gray70; bgcolor=white;
+        L1 [label="Pradinė būsena" fillcolor="#FFFACD" penwidth=2 color="#DAA520" shape=box];
+        L2 [label="Galutinė būsena" fillcolor="#90EE90" penwidth=2 color="#006400" shape=box];
+        L3 [label="Sprendimo kelyje" fillcolor="#ADD8E6" color="#4682B4" shape=box];
+        L4 [label="Blogoji šaka" fillcolor="#FFE4E1" color="#CD5C5C" shape=box];
+        L5 [label="━━ Sprendimo kelias" shape=plaintext fillcolor=white fontcolor="#006400"];
+        L6 [label="╌╌ Kita šaka" shape=plaintext fillcolor=white fontcolor="#999999"];
+        L1 -> L2 -> L3 -> L4 -> L5 -> L6 [style=invis];
+    }
+}
